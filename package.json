@@ -1,0 +1,59 @@
+{
+  "name": "error-handle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/error-handle.js",
+  "module": "error-handle.js",
+  "homepage": "https://github.com/firstandthird/error-handle",
+  "author": "First+Third",
+  "license": "MIT License",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/firstandthird/error-handle"
+  },
+  "scripts": {
+    "start": "scriptkit",
+    "dev": "scriptkit dev",
+    "prepublish": "scriptkit"
+  },
+  "devDependencies": {
+    "eslint-config-firstandthird": "^4.3.0",
+    "eslint-plugin-compat": "^2.5.1",
+    "eslint-plugin-import": "^2.14.0",
+    "phantomjs-prebuilt": "^2.1.16",
+    "scriptkit": "^1.0.0",
+    "static-server": "^2.2.1",
+    "tap-spec": "^5.0.0",
+    "tape-rollup": "4.6.4",
+    "tape-run": "^2.1.5"
+  },
+  "dependencies": {
+    "domassist": "^1.11.1",
+    "domodule": "^5.2.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "commonjs": true
+    },
+    "extends": "firstandthird",
+    "plugins": [
+      "compat"
+    ],
+    "rules": {
+      "compat/compat": 2
+    }
+  },
+  "scriptkit": {
+    "files": {
+      "dist/error-handle.js": "error-handle.js"
+    },
+    "scripts": {
+      "babel": {
+        "exclude": [
+          "node_modules/tape-rollup/*"
+        ]
+      }
+    }
+  }
+}
