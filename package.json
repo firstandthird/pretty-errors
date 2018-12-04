@@ -13,8 +13,10 @@
   },
   "scripts": {
     "start": "scriptkit",
+    "build": "scriptkit build",
     "dev": "scriptkit dev",
-    "prepublish": "scriptkit"
+    "test": "cat test/pretty-errors.test.dist.js | tape-run --static . --browser phantomjs --render tap-spec",
+    "prepublishOnly": "scriptkit"
   },
   "devDependencies": {
     "eslint-config-firstandthird": "^4.3.0",
@@ -46,7 +48,8 @@
   },
   "scriptkit": {
     "files": {
-      "dist/pretty-errors.js": "pretty-errors.js"
+      "dist/pretty-errors.js": "pretty-errors.js",
+      "test/pretty-errors.test.dist.js": "test/pretty-errors.test.js"
     },
     "scripts": {
       "babel": {
