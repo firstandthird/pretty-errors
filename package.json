@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/pretty-errors.js",
-  "module": "pretty-errors.js",
+  "module": "index.js",
   "homepage": "https://github.com/firstandthird/pretty-errors",
   "author": "First+Third",
   "license": "MIT License",
@@ -47,7 +47,7 @@
   },
   "scriptkit": {
     "files": {
-      "dist/pretty-errors.js": "pretty-errors.js",
+      "dist/pretty-errors.js": "index.js",
       "test/pretty-errors.test.dist.js": "test/pretty-errors.test.js"
     },
     "scripts": {
