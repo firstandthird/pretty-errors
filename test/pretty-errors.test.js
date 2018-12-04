@@ -1,4 +1,4 @@
-import PrettyErrors from '../pretty-errors';
+import PrettyErrors from '../index';
 import Domodule from 'domodule';
 import { fire } from 'domassist';
 import test from 'tape-rollup';
