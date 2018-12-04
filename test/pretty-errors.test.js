@@ -49,3 +49,11 @@ test('If events dont match not change inner text', assert => {
   assert.notEqual(instance.el.innerText, 'error');
   assert.end();
 });
+
+test('Brokes if dont have any event', assert => {
+  const [instance] = setup('');
+
+  fire(document.body, 'random-event', { detail: { error: 'error' } });
+  assert.notEqual(instance.el.innerText, 'error');
+  assert.end();
+});
