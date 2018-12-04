@@ -1,4 +1,4 @@
-import { on, html, addClass } from 'domassist';
+import { on, html, removeClass } from 'domassist';
 import Domodule from 'domodule';
 // import ErrorRules from './error-rules';
 
@@ -28,7 +28,7 @@ export default class PrettyErrors extends Domodule {
       });
     }
 
-    addClass(this.el, 'visible');
+    removeClass(this.el, 'hide');
     html(this.el, message);
   }
 }
