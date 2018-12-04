@@ -35,7 +35,7 @@ test('Same event, not matching error message', assert => {
 test('Same event, matching error message', assert => {
   const [instance] = setup('circle:create:error');
 
-  instance.getErrors = () => ErrorRules;
+  instance.getRules = () => ErrorRules;
 
   fire(document.body, 'circle:create:error', { detail: { error: 'apiQuery:error' } });
   assert.equal(instance.el.innerText, 'Api fails');
