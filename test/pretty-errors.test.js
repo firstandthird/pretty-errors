@@ -15,7 +15,7 @@ const setup = options => {
 
   document.body.appendChild(wrapper);
 
-  return prettyErrors.discover();
+  return document.body.appendChild(wrapper);
 };
 
 test('Class', assert => {
@@ -26,6 +26,9 @@ test('Class', assert => {
 test('Pasing Error Message', assert => {
   const instance = setup('circle:create:error');
 
+  prettyErrors.discover();
+
   fire(document.body, 'circle:create:error', { detail: { error: 'error' } });
   assert.equal(instance.innerText, 'error');
+  assert.end();
 });
