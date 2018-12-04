@@ -1,0 +1,61 @@
+{
+  "name": "@firstandthird/pretty-errors",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/pretty-errors.js",
+  "module": "index.js",
+  "homepage": "https://github.com/firstandthird/pretty-errors",
+  "author": "First+Third",
+  "license": "MIT License",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/firstandthird/pretty-errors"
+  },
+  "scripts": {
+    "start": "scriptkit",
+    "build": "scriptkit build",
+    "dev": "scriptkit dev",
+    "test": "cat test/pretty-errors.test.dist.js | tape-run --static . --browser phantomjs --render tap-spec",
+    "prepublishOnly": "scriptkit"
+  },
+  "devDependencies": {
+    "eslint-config-firstandthird": "^4.3.0",
+    "eslint-plugin-compat": "^2.5.1",
+    "eslint-plugin-import": "^2.14.0",
+    "phantomjs-prebuilt": "^2.1.16",
+    "scriptkit": "^1.0.0",
+    "tap-spec": "^5.0.0",
+    "tape-rollup": "4.6.4",
+    "tape-run": "^4.0.0"
+  },
+  "dependencies": {
+    "domassist": "^1.11.1",
+    "domodule": "^5.2.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "commonjs": true
+    },
+    "extends": "firstandthird",
+    "plugins": [
+      "compat"
+    ],
+    "rules": {
+      "compat/compat": 2
+    }
+  },
+  "scriptkit": {
+    "files": {
+      "dist/pretty-errors.js": "index.js",
+      "test/pretty-errors.test.dist.js": "test/pretty-errors.test.js"
+    },
+    "scripts": {
+      "babel": {
+        "exclude": [
+          "node_modules/tape-rollup/*"
+        ]
+      }
+    }
+  }
+}
