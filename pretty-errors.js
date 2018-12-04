@@ -6,6 +6,12 @@ export default class PrettyErrors extends Domodule {
     return null;
   }
 
+  getRequired() {
+    return {
+      options: ['event']
+    };
+  }
+
   postInit() {
     on(document.body, this.options.event, this.onError.bind(this));
     on(document.body, `${this.options.event}:hide`, this.onHide.bind(this));

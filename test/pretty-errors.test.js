@@ -1,4 +1,4 @@
-import prettyErrors from '../pretty-errors';
+import PrettyErrors from '../pretty-errors';
 import Domodule from 'domodule';
 import { fire } from 'domassist';
 import test from 'tape-rollup';
@@ -16,7 +16,7 @@ const ERRORS = [
 
 const setup = options => {
   const wrapper = document.createElement('div');
-  wrapper.innerHTML = `<div id="data"
+  wrapper.innerHTML = `<div
     data-module="PrettyErrors"
     data-module-title="PrettyErrors"
     data-module-event="${options || ''}">
@@ -26,11 +26,11 @@ const setup = options => {
 
   document.body.appendChild(wrapper);
 
-  return prettyErrors.discover();
+  return PrettyErrors.discover();
 };
 
 test('Class', assert => {
-  assert.ok(prettyErrors.prototype instanceof Domodule, 'It\'s a domodule class');
+  assert.ok(PrettyErrors.prototype instanceof Domodule, 'It\'s a domodule class');
   assert.end();
 });
 
@@ -61,10 +61,10 @@ test('If events dont match not change inner text', assert => {
 });
 
 test('Required event', assert => {
-  fire(document.body, 'random-event', { detail: { error: 'error' } });
-  assert.throws(
-    () => {
-      throw new prettyErrors;
-    }); // > ?!
+  const wrongEl = document.createElement('div');
+
+  assert.throws(() => {
+    new PrettyErrors(wrongEl);
+  }, /event is required as options for Pretty Errors, but is missing!/, 'Should throw if required option is missing');
   assert.end();
 });
