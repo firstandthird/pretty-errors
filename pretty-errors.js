@@ -1,8 +1,8 @@
-import { on, html, addClass, fire } from 'domassist';
+import { on, html, addClass } from 'domassist';
 import Domodule from 'domodule';
 // import ErrorRules from './error-rules';
 
-class PrettyErrors extends Domodule {
+export default class PrettyErrors extends Domodule {
   getRules() {
     return null;
   }
