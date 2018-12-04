@@ -24,10 +24,9 @@
     "eslint-plugin-import": "^2.14.0",
     "phantomjs-prebuilt": "^2.1.16",
     "scriptkit": "^1.0.0",
-    "static-server": "^2.2.1",
     "tap-spec": "^5.0.0",
     "tape-rollup": "4.6.4",
-    "tape-run": "^2.1.5"
+    "tape-run": "^4.0.0"
   },
   "dependencies": {
     "domassist": "^1.11.1",
