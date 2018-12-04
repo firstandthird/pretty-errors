@@ -2,7 +2,17 @@ import prettyErrors from '../pretty-errors';
 import Domodule from 'domodule';
 import { fire } from 'domassist';
 import test from 'tape-rollup';
-import ErrorRules from '../error-rules';
+
+const ERRORS = [
+  {
+    regexp: /apiQuery:error/gi,
+    format: match => 'Api fails'
+  },
+  {
+    regexp: /Response Error: 401 Unauthorized/gi,
+    format: (match, service) => `We're having problems connecting to ${service}.`
+  }
+];
 
 const setup = options => {
   const wrapper = document.createElement('div');
@@ -35,7 +45,7 @@ test('Same event, not matching error message', assert => {
 test('Same event, matching error message', assert => {
   const [instance] = setup('circle:create:error');
 
-  instance.getRules = () => ErrorRules;
+  instance.getRules = () => ERRORS;
 
   fire(document.body, 'circle:create:error', { detail: { error: 'apiQuery:error' } });
   assert.equal(instance.el.innerText, 'Api fails');
@@ -50,10 +60,11 @@ test('If events dont match not change inner text', assert => {
   assert.end();
 });
 
-test('Brokes if dont have any event', assert => {
-  const [instance] = setup('');
-
+test('Required event', assert => {
   fire(document.body, 'random-event', { detail: { error: 'error' } });
-  assert.notEqual(instance.el.innerText, 'error');
+  assert.throws(
+    () => {
+      throw new prettyErrors;
+    }); // > ?!
   assert.end();
 });
