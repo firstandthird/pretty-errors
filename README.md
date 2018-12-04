@@ -1,1 +1,1 @@
-# Error Handle
+# Pretty errors
