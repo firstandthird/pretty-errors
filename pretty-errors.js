@@ -1,6 +1,5 @@
-import { on, html, removeClass } from 'domassist';
+import { on, html, removeClass, addClass } from 'domassist';
 import Domodule from 'domodule';
-// import ErrorRules from './error-rules';
 
 export default class PrettyErrors extends Domodule {
   getRules() {
@@ -9,6 +8,7 @@ export default class PrettyErrors extends Domodule {
 
   postInit() {
     on(document.body, this.options.event, this.onError.bind(this));
+    on(document.body, `${this.options.event}:hide`, this.onHide.bind(this));
   }
 
   onError(event) {
@@ -28,8 +28,16 @@ export default class PrettyErrors extends Domodule {
       });
     }
 
-    removeClass(this.el, 'hide');
+    this.show();
     html(this.el, message);
+  }
+
+  onHide() {
+    addClass(this.el, 'hide');
+  }
+
+  show() {
+    removeClass(this.el, 'hide');
   }
 }
 
