@@ -1,7 +1,8 @@
 import prettyErrors from '../pretty-errors';
 import Domodule from 'domodule';
-import { once, fire, findOne } from 'domassist';
+import { fire } from 'domassist';
 import test from 'tape-rollup';
+import ErrorRules from '../error-rules';
 
 const setup = options => {
   const wrapper = document.createElement('div');
@@ -23,12 +24,37 @@ test('Class', assert => {
   assert.end();
 });
 
-test('Pasing Error Message', assert => {
+test('Same event, not matching error message', assert => {
   const instance = setup('circle:create:error');
 
   prettyErrors.discover();
 
   fire(document.body, 'circle:create:error', { detail: { error: 'error' } });
   assert.equal(instance.innerText, 'error');
+  assert.end();
+});
+
+test('Same event, matching error message', assert => {
+  const instance = setup('circle:create:error');
+  class CirclePrettyErrors extends prettyErrors {
+    getRules() {
+      return ErrorRules;
+    }
+  }
+
+  CirclePrettyErrors.discover();
+
+  fire(document.body, 'circle:create:error', { detail: { error: 'apiQuery:error' } });
+  assert.equal(instance.innerText, 'Api fails');
+  assert.end();
+});
+
+test('If events dont match not change inner text', assert => {
+  const instance = setup('circle:create:error');
+
+  prettyErrors.discover();
+
+  fire(document.body, 'random-event', { detail: { error: 'error' } });
+  assert.notEqual(instance.innerText, 'error');
   assert.end();
 });
