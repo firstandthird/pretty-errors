@@ -1,6 +1,6 @@
 import { on, html, addClass, fire } from 'domassist';
 import Domodule from 'domodule';
-import ErrorRules from './error-rules';
+// import ErrorRules from './error-rules';
 
 class PrettyErrors extends Domodule {
   getRules() {
@@ -9,7 +9,6 @@ class PrettyErrors extends Domodule {
 
   postInit() {
     on(document.body, this.options.event, this.onError.bind(this));
-    fire(document.body, this.options.event, { detail: { error: 'error' } });
   }
 
   onError(event) {
