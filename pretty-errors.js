@@ -6,7 +6,7 @@ export default class PrettyErrors extends Domodule {
     return null;
   }
 
-  getRequired() {
+  get required() {
     return {
       options: ['event']
     };

@@ -8,10 +8,6 @@ const ERRORS = [
     regexp: /apiQuery:error/gi,
     format: match => 'Api fails'
   },
-  {
-    regexp: /Response Error: 401 Unauthorized/gi,
-    format: (match, service) => `We're having problems connecting to ${service}.`
-  }
 ];
 
 const setup = options => {
@@ -65,6 +61,6 @@ test('Required event', assert => {
 
   assert.throws(() => {
     new PrettyErrors(wrongEl);
-  }, /event is required as options for Pretty Errors, but is missing!/, 'Should throw if required option is missing');
+  }, 'Should throw if required option is missing');
   assert.end();
 });
