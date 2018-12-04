@@ -16,7 +16,7 @@ const setup = options => {
 
   document.body.appendChild(wrapper);
 
-  return document.body.appendChild(wrapper);
+  return prettyErrors.discover();
 };
 
 test('Class', assert => {
@@ -25,36 +25,27 @@ test('Class', assert => {
 });
 
 test('Same event, not matching error message', assert => {
-  const instance = setup('circle:create:error');
-
-  prettyErrors.discover();
+  const [instance] = setup('circle:create:error');
 
   fire(document.body, 'circle:create:error', { detail: { error: 'error' } });
-  assert.equal(instance.innerText, 'error');
+  assert.equal(instance.el.innerText, 'error');
   assert.end();
 });
 
 test('Same event, matching error message', assert => {
-  const instance = setup('circle:create:error');
-  class CirclePrettyErrors extends prettyErrors {
-    getRules() {
-      return ErrorRules;
-    }
-  }
+  const [instance] = setup('circle:create:error');
 
-  CirclePrettyErrors.discover();
+  instance.getErrors = () => ErrorRules;
 
   fire(document.body, 'circle:create:error', { detail: { error: 'apiQuery:error' } });
-  assert.equal(instance.innerText, 'Api fails');
+  assert.equal(instance.el.innerText, 'Api fails');
   assert.end();
 });
 
 test('If events dont match not change inner text', assert => {
-  const instance = setup('circle:create:error');
-
-  prettyErrors.discover();
+  const [instance] = setup('circle:create:error');
 
   fire(document.body, 'random-event', { detail: { error: 'error' } });
-  assert.notEqual(instance.innerText, 'error');
+  assert.notEqual(instance.el.innerText, 'error');
   assert.end();
 });
