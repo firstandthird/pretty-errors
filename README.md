@@ -2,7 +2,7 @@
 Domodule Library for adding nice errors on web sites.
 
 ## Instalation
-npm install scrollup-header
+npm install @firstandthird/pretty-errors
 
 ## Usage
 Use the HTML in the example and customise to your needs.

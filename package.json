@@ -1,5 +1,5 @@
 {
-  "name": "pretty-errors",
+  "name": "@firstandthird/pretty-errors",
   "version": "1.0.0",
   "description": "",
   "main": "dist/pretty-errors.js",
