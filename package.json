@@ -1,15 +1,15 @@
 {
-  "name": "error-handle",
+  "name": "pretty-errors",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/error-handle.js",
-  "module": "error-handle.js",
-  "homepage": "https://github.com/firstandthird/error-handle",
+  "main": "dist/pretty-errors.js",
+  "module": "pretty-errors.js",
+  "homepage": "https://github.com/firstandthird/pretty-errors",
   "author": "First+Third",
   "license": "MIT License",
   "repository": {
     "type": "git",
-    "url": "https://github.com/firstandthird/error-handle"
+    "url": "https://github.com/firstandthird/pretty-errors"
   },
   "scripts": {
     "start": "scriptkit",
@@ -46,7 +46,7 @@
   },
   "scriptkit": {
     "files": {
-      "dist/error-handle.js": "error-handle.js"
+      "dist/pretty-errors.js": "pretty-errors.js"
     },
     "scripts": {
       "babel": {
