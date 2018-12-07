@@ -18,6 +18,7 @@ export default class PrettyErrors extends Domodule {
 
   postInit() {
     const errors = this.getErrors();
+
     if (errors) {
       errors.forEach((error) => {
         on(document.body, error, this.onError.bind(this));

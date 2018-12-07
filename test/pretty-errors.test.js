@@ -51,12 +51,36 @@ test('Same event, matching error message', assert => {
 });
 
 test('Multiple events, same error type', assert => {
-  const [instance] = setup('circle:create:error');
+  class CirclePrettyErrors extends PrettyErrors {
+    getErrors() {
+      return ERRORS;
+    }
+  }
+  Domodule.register('CirclePrettyErrors', CirclePrettyErrors);
 
-  instance.getErrors = () => {return ['api:Error', 'circle:error']};
+  const s = () => {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = `<div
+      data-module="CirclePrettyErrors"
+      data-module-title="CirclePrettyErrors"
+      data-module-event="circle:create:error">
+        <div data-name="title"></div>
+        <button type="button" data-action="postInit">Show Title</button>
+    </div>`;
+
+    document.body.appendChild(wrapper);
+
+    return CirclePrettyErrors.discover();
+  };
+
+  const [instance] = s();
 
   fire(document.body, 'circle:error', { detail: { error: 'error' } });
   assert.equal(instance.el.innerText, 'error');
+
+  fire(document.body, 'api:Error', { detail: { error: 'api error' } });
+  assert.equal(instance.el.innerText, 'api error');
+
   assert.end();
 });
 
