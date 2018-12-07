@@ -3,12 +3,14 @@ import Domodule from 'domodule';
 import { fire } from 'domassist';
 import test from 'tape-rollup';
 
-const ERRORS = [
+const RULES = [
   {
     regexp: /apiQuery:error/gi,
     format: match => 'Api fails'
   },
 ];
+
+const ERRORS = ['api:Error', 'circle:error'];
 
 const setup = options => {
   const wrapper = document.createElement('div');
@@ -41,10 +43,20 @@ test('Same event, not matching error message', assert => {
 test('Same event, matching error message', assert => {
   const [instance] = setup('circle:create:error');
 
-  instance.getRules = () => ERRORS;
+  instance.getRules = () => RULES;
 
   fire(document.body, 'circle:create:error', { detail: { error: 'apiQuery:error' } });
   assert.equal(instance.el.innerText, 'Api fails');
+  assert.end();
+});
+
+test('Multiple events, same error type', assert => {
+  const [instance] = setup('circle:create:error');
+
+  instance.getErrors = () => {return ['api:Error', 'circle:error']};
+
+  fire(document.body, 'circle:error', { detail: { error: 'error' } });
+  assert.equal(instance.el.innerText, 'error');
   assert.end();
 });
 
