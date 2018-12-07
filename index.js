@@ -9,32 +9,22 @@ export default class PrettyErrors extends Domodule {
   }
 
   getRules() {
-    return null;
-  }
-
-  getErrors() {
-    return null;
+    return [];
   }
 
   postInit() {
-    const errors = this.getErrors();
-
-    if (errors) {
-      errors.forEach((error) => {
-        on(document.body, error, this.onError.bind(this));
-        on(document.body, `${error}:hide`, this.onHide.bind(this));
-      });
-    } else {
-      on(document.body, this.options.event, this.onError.bind(this));
-      on(document.body, `${this.options.event}:hide`, this.onHide.bind(this));
-    }
+    const events = this.options.event;
+    events.split(', ').forEach(event => {
+      on(document.body, event, this.onError.bind(this));
+      on(document.body, `${event}:hide`, this.onHide.bind(this));
+    });
   }
 
   onError(event) {
     let message = event.detail.error;
     const rules = this.getRules();
 
-    if (rules) {
+    if (rules !== []) {
       rules.some(er => {
         const match = er.regexp.exec(message);
         er.regexp.lastIndex = 0;

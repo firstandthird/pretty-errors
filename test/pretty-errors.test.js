@@ -10,8 +10,6 @@ const RULES = [
   },
 ];
 
-const ERRORS = ['api:Error', 'circle:error'];
-
 const setup = options => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = `<div
@@ -51,35 +49,18 @@ test('Same event, matching error message', assert => {
 });
 
 test('Multiple events, same error type', assert => {
-  class CirclePrettyErrors extends PrettyErrors {
-    getErrors() {
-      return ERRORS;
-    }
-  }
-  Domodule.register('CirclePrettyErrors', CirclePrettyErrors);
+  const [instance] = setup('circle:create:error, circle:error, api:Error');
 
-  const s = () => {
-    const wrapper = document.createElement('div');
-    wrapper.innerHTML = `<div
-      data-module="CirclePrettyErrors"
-      data-module-title="CirclePrettyErrors"
-      data-module-event="circle:create:error">
-        <div data-name="title"></div>
-        <button type="button" data-action="postInit">Show Title</button>
-    </div>`;
+  instance.getRules = () => RULES;
 
-    document.body.appendChild(wrapper);
-
-    return CirclePrettyErrors.discover();
-  };
-
-  const [instance] = s();
+  fire(document.body, 'circle:create:error', { detail: { error: 'circle not create' } });
+  assert.equal(instance.el.innerText, 'circle not create');
 
   fire(document.body, 'circle:error', { detail: { error: 'error' } });
   assert.equal(instance.el.innerText, 'error');
 
-  fire(document.body, 'api:Error', { detail: { error: 'api error' } });
-  assert.equal(instance.el.innerText, 'api error');
+  fire(document.body, 'api:Error', { detail: { error: 'apiQuery:error' } });
+  assert.equal(instance.el.innerText, 'Api fails');
 
   assert.end();
 });
