@@ -22,6 +22,7 @@ export default class PrettyErrors extends Domodule {
     if (errors) {
       errors.forEach((error) => {
         on(document.body, error, this.onError.bind(this));
+        on(document.body, `${error}:hide`, this.onHide.bind(this));
       });
     } else {
       on(document.body, this.options.event, this.onError.bind(this));
