@@ -12,9 +12,13 @@ export default class PrettyErrors extends Domodule {
     return [];
   }
 
+  getEvents() {
+    return this.options.event.split(',');
+  }
+
   postInit() {
-    const events = this.options.event;
-    events.split(',').forEach(event => {
+    const events = this.getEvents();
+    events.forEach(event => {
       const typeEvent = event.trim();
 
       on(document.body, typeEvent, this.onError.bind(this));
