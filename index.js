@@ -26,18 +26,16 @@ export default class PrettyErrors extends Domodule {
     let message = event.detail.error;
     const rules = this.getRules();
 
-    if (rules.length) {
-      rules.some(er => {
-        const match = er.regexp.exec(message);
-        er.regexp.lastIndex = 0;
+    rules.some(er => {
+      const match = er.regexp.exec(message);
+      er.regexp.lastIndex = 0;
 
-        if (match) {
-          message = er.format(match);
-        }
+      if (match) {
+        message = er.format(match);
+      }
 
-        return !!match;
-      });
-    }
+      return !!match;
+    });
 
     removeClass(this.el, 'hide');
     html(this.el, message);
