@@ -1,6 +1,6 @@
 {
   "name": "@firstandthird/pretty-errors",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "module": "dist/pretty-errors.esm.js",
