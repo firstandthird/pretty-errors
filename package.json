@@ -1,6 +1,6 @@
 {
   "name": "@firstandthird/pretty-errors",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Domodule Library for adding nice errors on web sites.",
   "main": "index.js",
   "module": "dist/pretty-errors.js",
