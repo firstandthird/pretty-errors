@@ -2,7 +2,7 @@
   "name": "@firstandthird/pretty-errors",
   "version": "2.0.0",
   "description": "Domodule Library for adding nice errors on web sites.",
-  "main": "dist/pretty-errors.cjs.js",
+  "main": "index.js",
   "module": "dist/pretty-errors.js",
   "homepage": "https://github.com/firstandthird/pretty-errors",
   "author": "First+Third",
@@ -26,7 +26,7 @@
     "phantomjs-prebuilt": "^2.1.16",
     "scriptkit": "^3.0.0",
     "tap-spec": "^5.0.0",
-    "tape-rollup": "4.6.4",
+    "tape-rollup": "^4.6.4",
     "tape-run": "^6.0.0"
   },
   "dependencies": {
@@ -35,8 +35,7 @@
   },
   "eslintConfig": {
     "env": {
-      "browser": true,
-      "commonjs": true
+      "browser": true
     },
     "extends": "firstandthird",
     "plugins": [
@@ -52,11 +51,8 @@
       "test/pretty-errors.test.dist.js": "test/pretty-errors.test.js"
     },
     "scripts": {
-      "formats": {
-        "cjs": true
-      },
-      "commonjs": {
-        "ignore": [
+      "babel": {
+        "exclude": [
           "node_modules/tape-rollup/*"
         ]
       }
