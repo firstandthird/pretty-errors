@@ -1,9 +1,9 @@
 {
   "name": "@firstandthird/pretty-errors",
   "version": "2.0.0",
-  "description": "",
-  "main": "index.js",
-  "module": "dist/pretty-errors.esm.js",
+  "description": "Domodule Library for adding nice errors on web sites.",
+  "main": "dist/pretty-errors.cjs.js",
+  "module": "dist/pretty-errors.js",
   "homepage": "https://github.com/firstandthird/pretty-errors",
   "author": "First+Third",
   "license": "MIT License",
@@ -15,23 +15,23 @@
     "start": "scriptkit",
     "build": "scriptkit build",
     "dev": "scriptkit dev",
-    "pretest": "npm run build",
-    "test": "cat test/pretty-errors.test.dist.js | tape-run --static . --browser phantomjs --render tap-spec",
+    "pretest": "scriptkit build",
+    "test": "cat test/pretty-errors.test.dist.bundle.js | tape-run --static . --browser phantomjs --render tap-spec",
     "prepublishOnly": "scriptkit"
   },
   "devDependencies": {
-    "eslint-config-firstandthird": "^4.3.0",
-    "eslint-plugin-compat": "^3.1.1",
-    "eslint-plugin-import": "^2.17.2",
+    "eslint-config-firstandthird": "^4.4.0",
+    "eslint-plugin-compat": "^3.2.0",
+    "eslint-plugin-import": "^2.18.0",
     "phantomjs-prebuilt": "^2.1.16",
-    "scriptkit": "^2.0.3",
+    "scriptkit": "^3.0.0",
     "tap-spec": "^5.0.0",
     "tape-rollup": "4.6.4",
     "tape-run": "^6.0.0"
   },
   "dependencies": {
-    "domassist": "^2.0.2",
-    "domodule": "^6.0.0"
+    "domassist": "^2.2.0",
+    "domodule": "^6.1.0"
   },
   "eslintConfig": {
     "env": {
@@ -52,6 +52,9 @@
       "test/pretty-errors.test.dist.js": "test/pretty-errors.test.js"
     },
     "scripts": {
+      "formats": {
+        "cjs": true
+      },
       "commonjs": {
         "ignore": [
           "node_modules/tape-rollup/*"
