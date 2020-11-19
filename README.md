@@ -1,5 +1,3 @@
-# Pretty errors ![npm](https://img.shields.io/npm/v/@firstandthird/pretty-errors.svg) [![Build Status](https://travis-ci.org/firstandthird/pretty-errors.svg?branch=master)](https://travis-ci.org/firstandthird/jsonp)
-
 <h1 align="center">@firstandthird/pretty-errors</h1>
 
 <p align="center">
