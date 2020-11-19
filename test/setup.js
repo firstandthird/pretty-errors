@@ -1,0 +1,1 @@
+global.PrettyErrors = require('..');

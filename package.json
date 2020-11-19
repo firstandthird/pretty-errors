@@ -2,60 +2,40 @@
   "name": "@firstandthird/pretty-errors",
   "version": "2.1.0",
   "description": "Domodule Library for adding nice errors on web sites.",
-  "main": "index.js",
-  "module": "dist/pretty-errors.js",
+  "source": "index.js",
+  "main": "dist/pretty-errors.js",
+  "module": "dist/pretty-errors.module.js",
+  "unpkg": "dist/pretty-errors.umd.js",
+  "esmodule": "dist/pretty-errors.modern.js",
   "homepage": "https://github.com/firstandthird/pretty-errors",
   "author": "First+Third",
-  "license": "MIT License",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/firstandthird/pretty-errors"
   },
   "scripts": {
-    "start": "scriptkit",
-    "build": "scriptkit build",
-    "dev": "scriptkit dev",
-    "pretest": "scriptkit build",
-    "test": "cat test/pretty-errors.test.dist.bundle.js | tape-run --static . --browser phantomjs --render tap-spec",
-    "prepublishOnly": "scriptkit"
+    "build": "microbundle",
+    "dev": "microbundle watch",
+    "test": "jest",
+    "pretest": "microbundle",
+    "prepublishOnly": "microbundle",
+    "lint": "microbundle && eslint index.js ./test"
   },
   "devDependencies": {
-    "eslint-config-firstandthird": "^4.4.0",
-    "eslint-plugin-compat": "^3.2.0",
-    "eslint-plugin-import": "^2.18.0",
-    "phantomjs-prebuilt": "^2.1.16",
-    "scriptkit": "^3.0.0",
-    "tap-spec": "^5.0.0",
-    "tape-rollup": "^4.6.4",
-    "tape-run": "^6.0.0"
+    "@babel/core": "^7.8.0",
+    "@babel/preset-env": "^7.8.2",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.13.0",
+    "eslint-config-firstandthird": "^6.0.2",
+    "eslint-plugin-compat": "^3.8.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.1.3",
+    "jest": "^26.6.3",
+    "microbundle": "^0.12.4"
   },
   "dependencies": {
     "domassist": "^2.2.0",
-    "domodule": "^6.1.0"
-  },
-  "eslintConfig": {
-    "env": {
-      "browser": true
-    },
-    "extends": "firstandthird",
-    "plugins": [
-      "compat"
-    ],
-    "rules": {
-      "compat/compat": 2
-    }
-  },
-  "scriptkit": {
-    "files": {
-      "dist/pretty-errors.js": "index.js",
-      "test/pretty-errors.test.dist.js": "test/pretty-errors.test.js"
-    },
-    "scripts": {
-      "babel": {
-        "exclude": [
-          "node_modules/tape-rollup/*"
-        ]
-      }
-    }
+    "domodule": "^8.0.0"
   }
 }
