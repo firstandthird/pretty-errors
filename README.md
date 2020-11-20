@@ -7,7 +7,7 @@
   <a href="https://github.com/firstandthird/pretty-errors/actions">
     <img src="https://img.shields.io/github/workflow/status/firstandthird/pretty-errors/Lint/main?label=Lint&style=for-the-badge" alt="Lint Status"/>
   </a>
-  <img src="https://img.shields.io/npm/v/pretty-errors.svg?label=npm&style=for-the-badge" alt="NPM" />
+  <img src="https://img.shields.io/npm/v/@firstandthird/pretty-errors.svg?label=npm&style=for-the-badge" alt="NPM" />
 </p>
 
 Domodule Library for adding nice errors on web sites.
