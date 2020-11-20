@@ -18,9 +18,9 @@ export default class PrettyErrors extends Domodule {
 
   postInit() {
     const events = this.getEvents();
+
     events.forEach(event => {
       const typeEvent = event.trim();
-
       on(document.body, typeEvent, this.onError.bind(this));
       on(document.body, `${typeEvent}:hide`, this.onHide.bind(this));
     });
