@@ -19,20 +19,20 @@ const setup = options => {
       <button type="button" data-action="postInit">Show Title</button>
   </div>`;
 
+  document.body.innerHTML = '';
   document.body.appendChild(wrapper);
-
   return PrettyErrors.discover();
 };
 
 test('Class', () => {
-  expect(PrettyErrors.prototype instanceof Domodule, 'It\'s a domodule class').toBeTruthy();
+  expect(PrettyErrors.prototype instanceof Domodule).toBeTruthy();
 });
 
 test('Same event, not matching error message', () => {
   const [instance] = setup('circle:create:error');
 
   fire(document.body, 'circle:create:error', { detail: { error: 'error' } });
-  expect(instance.el.innerText).toMatch('false');
+  expect(instance.el.innerHTML).toMatch('error');
 });
 
 test('Same event, matching error message', () => {
@@ -41,7 +41,7 @@ test('Same event, matching error message', () => {
   instance.getRules = () => RULES;
 
   fire(document.body, 'circle:create:error', { detail: { error: 'apiQuery:error' } });
-  expect(instance.el.innerText).toMatch('Api fails');
+  expect(instance.el.innerHTML).toMatch('Api fails');
 });
 
 test('Multiple events, same error type', () => {
@@ -50,20 +50,20 @@ test('Multiple events, same error type', () => {
   instance.getRules = () => RULES;
 
   fire(document.body, 'circle:create:error', { detail: { error: 'circle not create' } });
-  expect(instance.el.innerText).toMatch('circle not create');
+  expect(instance.el.innerHTML).toMatch('circle not create');
 
   fire(document.body, 'circle:error', { detail: { error: 'error' } });
-  expect(instance.el.innerText).toMatch('error');
+  expect(instance.el.innerHTML).toMatch('error');
 
   fire(document.body, 'api:Error', { detail: { error: 'apiQuery:error' } });
-  expect(instance.el.innerText).toMatch('Api fails');
+  expect(instance.el.innerHTML).toMatch('Api fails');
 });
 
 test('If events dont match not change inner text', () => {
   const [instance] = setup('circle:create:error');
 
   fire(document.body, 'random-event', { detail: { error: 'error' } });
-  expect(instance.el.innerText).not.toMatch('error');
+  expect(instance.el.innerHTML).not.toMatch('error');
 });
 
 test('Required event', () => {
