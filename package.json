@@ -1,6 +1,6 @@
 {
   "name": "@firstandthird/pretty-errors",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "Domodule Library for adding nice errors on web sites.",
   "source": "index.js",
   "main": "dist/pretty-errors.js",
@@ -23,8 +23,8 @@
     "lint": "eslint index.js ./test"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@babel/preset-env": "^7.12.1",
+    "@babel/core": "^7.12.7",
+    "@babel/preset-env": "^7.12.7",
     "babel-jest": "^26.6.3",
     "eslint": "^7.13.0",
     "eslint-config-firstandthird": "^6.0.2",
