@@ -12,7 +12,7 @@
 
 Domodule Library for adding nice errors on web sites.
 
-## Instalation
+## Installation
 
 ```sh
 npm install @firstandthird/pretty-errors
